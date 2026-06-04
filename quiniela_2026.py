@@ -671,6 +671,13 @@ else:
         if st.button("🚪 Salir",use_container_width=True): st.session_state.user=None; st.rerun()
         st.divider()
         st.info("Los partidos se bloquean una hora antes de comenzar el encuentro.")
+        st.info("Costo $100 Tarjeta B. Azteca: 4027665885774530 \n MIGUEL ANGEL GARDUÑO LOPEZ.")
+        st.markdown("""<div class="reglas-container"><div style="text-align:center">
+          <span class="regla-item"> PREMIOS AL MOMENTO: </span>
+          <span class="regla-item" style="color:#7c3aed"> 🥇 1°: $ 450 </span>
+          <span class="regla-item" style="color:#7c3aed"> 🥈 2°: $ 270 </span>
+          <span class="regla-item" style="color:#7c3aed"> 🥉 3°: $ 180 </span>
+        </div></div>""", unsafe_allow_html=True)
         
     # ══════════════════════════════════════════
     # USUARIO NORMAL
