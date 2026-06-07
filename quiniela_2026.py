@@ -711,12 +711,22 @@ else:
         st.divider()
         st.info("Los partidos se bloquean una hora antes de comenzar el encuentro.")
         st.info("Depósitos Banco Azteca 💳 \n Tarjeta: 4027665885774530 \n MIGUEL ANGEL GARDUÑO LOPEZ")    
-        st.markdown("""<div class="reglas-container"><div style="text-align:center">
-          <span class="regla-item"> PREMIOS AL MOMENTO: </span>
-          <span class="regla-item" style="color:#7c3aed"> 🥇 1°: $ 585 </span>
-          <span class="regla-item" style="color:#7c3aed"> 🥈 2°: $ 350 </span>
-          <span class="regla-item" style="color:#7c3aed"> 🥉 3°: $ 235 </span>
-        </div></div>""", unsafe_allow_html=True)
+        conn_usp=conectar_db()                
+        df_us=pd.read_sql(
+            "SELECT username FROM usuarios WHERE username!='ADMIN'",conn_usp)
+        conn_usp.close()
+        if df_us.empty: st.info("No hay usuarios registrados.")
+        else:
+                 total_p = len(df_us) * 90
+                 p1 = total_p * 50 / 100
+                 p2 = total_p * 30 / 100
+                 p3 = total_p * 20 / 100
+                 st.markdown(f"""<div class="reglas-container"><div style="text-align:center">
+                    <span class="regla-item"> PREMIOS POSIBLES AL MOMENTO: </span>
+                    <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥇 1°: ${format(p1, ",.2f")} </span>
+                    <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥈 2°: ${format(p2, ",.2f")} </span>
+                    <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥉 3°: ${format(p3, ",.2f")} </span>
+                    </div></div>""", unsafe_allow_html=True)
         
         
     # ══════════════════════════════════════════
