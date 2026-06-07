@@ -710,14 +710,14 @@ else:
         if st.button("🚪 Salir",use_container_width=True): st.session_state.user=None; st.rerun()
         st.divider()
         st.info("Los partidos se bloquean una hora antes de comenzar el encuentro.")
-        st.info("EFECTIVO EN DESPACHO 💵,\n Depósitos Banco Azteca 💳 \n Tarjeta: 4027665885774530 \n MIGUEL ANGEL GARDUÑO LOPEZ")    
+        st.info("Depósitos Banco Azteca 💳 \n Tarjeta: 4027665885774530 \n MIGUEL ANGEL GARDUÑO LOPEZ")    
         conn_usp=conectar_db()                
         df_us=pd.read_sql(
             "SELECT username FROM usuarios WHERE username!='ADMIN'",conn_usp)
         conn_usp.close()
         if df_us.empty: st.info("No hay usuarios registrados.")
         else:
-                 total_p = len(df_us) * 235
+                 total_p = len(df_us) * 90
                  p1 = total_p * 50 / 100
                  p2 = total_p * 30 / 100
                  p3 = total_p * 20 / 100
@@ -727,6 +727,7 @@ else:
                     <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥈 2°: ${format(p2, ",.2f")} </span>
                     <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥉 3°: ${format(p3, ",.2f")} </span>
                     </div></div>""", unsafe_allow_html=True)
+        
         
     # ══════════════════════════════════════════
     # USUARIO NORMAL
@@ -955,10 +956,10 @@ else:
                 conn_usp.close()
                 if df_usp.empty: st.info("No hay usuarios registrados.")
                 else:
-                 total_p = len(df_usp) * 235
-                 p1 = total_p * 60 / 100
+                 total_p = len(df_usp) * 90
+                 p1 = total_p * 50 / 100
                  p2 = total_p * 30 / 100
-                 p3 = total_p * 10 / 100
+                 p3 = total_p * 20 / 100
                  st.markdown(f"""<div class="reglas-container"><div style="text-align:center">
                     <span class="regla-item"> QUINIELAS PAGADAS:-> </span>
                     <span class="regla-item" style="color:#228B22;font-size:18px"> {len(df_usp)}</span>
@@ -980,7 +981,7 @@ else:
                     yo_badge = " 👤" if es_yo else ""
                     rows_html+=f"""<tr style="{bg}">
                       <td style="text-align:center;font-weight:900;font-size:1rem">{medal}</td>
-                      <td style="text-align:left;font-weight:800;font-size:1.0rem;color:#2E4D6B;white-space:nowrap">{row["Usuario"]}{yo_badge}</td>
+                      <td style="text-align:left;font-weight:800; font-size:1.0rem;color:#2E4D6B;white-space:nowrap">{row["Usuario"]}{yo_badge}</td>
                       <td style="text-align:center;font-weight:900;color:#3b82f6;font-size:1.1rem">{row["Pts"]}</td>
                       <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Exacto",0)}</td>
                       <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Ganador",0)}</td>
