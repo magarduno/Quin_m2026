@@ -946,10 +946,10 @@ else:
                 conn_usp.close()
                 if df_usp.empty: st.info("No hay usuarios registrados.")
                 else:
-                 total_p = len(df_usp) * 235
-                 p1 = total_p * 60 / 100
+                 total_p = len(df_usp) * 90
+                 p1 = total_p * 50 / 100
                  p2 = total_p * 30 / 100
-                 p3 = total_p * 10 / 100
+                 p3 = total_p * 20 / 100
                  st.markdown(f"""<div class="reglas-container"><div style="text-align:center">
                     <span class="regla-item"> QUINIELAS PAGADAS:-> </span>
                     <span class="regla-item" style="color:#228B22;font-size:18px"> {len(df_usp)}</span>
@@ -971,7 +971,7 @@ else:
                     yo_badge = " 👤" if es_yo else ""
                     rows_html+=f"""<tr style="{bg}">
                       <td style="text-align:center;font-weight:900;font-size:1rem">{medal}</td>
-                      <td style="text-align:left;font-weight:800;color:#2E4D6B;white-space:nowrap">{row["Usuario"]}{yo_badge}</td>
+                      <td style="text-align:left;font-weight:800; font-size:1.0rem;color:#2E4D6B;white-space:nowrap">{row["Usuario"]}{yo_badge}</td>
                       <td style="text-align:center;font-weight:900;color:#3b82f6;font-size:1.1rem">{row["Pts"]}</td>
                       <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Exacto",0)}</td>
                       <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Ganador",0)}</td>
@@ -990,12 +990,12 @@ else:
                         <th style="padding:10px 8px;text-align:center;color:#64748b;font-size:.80rem;letter-spacing:1px;white-space:nowrap">POS</th>
                         <th style="padding:10px 8px;text-align:left;color:#64748b;font-size:.80rem;letter-spacing:1px">JUGADOR</th>
                         <th style="padding:10px 8px;text-align:center;color:#3b82f6;font-size:.80rem;letter-spacing:1px">PTS</th>
-                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.6rem;white-space:nowrap">🎯<br>Exacto<br><span style="color:#475569">3pts</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.6rem;white-space:nowrap">🏆<br>Ganador<br><span style="color:#475569">2pts</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.6rem;white-space:nowrap">🤝<br>Empate<br><span style="color:#475569">1pt</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.6rem;white-space:nowrap">⚽<br>2F G+Pen<br><span style="color:#475569">3pts</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.6rem;white-space:nowrap">⚽<br>2F Ganador<br><span style="color:#475569">2pts</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.6rem;white-space:nowrap">🎲<br>2F G. Pen<br><span style="color:#475569">1pt</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.7rem;white-space:nowrap">🎯<br>Exacto<br><span style="color:#475569">3pts</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.7rem;white-space:nowrap">🏆<br>Ganador<br><span style="color:#475569">2pts</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.7rem;white-space:nowrap">🤝<br>Empate<br><span style="color:#475569">1pt</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.7rem;white-space:nowrap">⚽<br>2F G+Pen<br><span style="color:#475569">3pts</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.7rem;white-space:nowrap">⚽<br>2F Ganador<br><span style="color:#475569">2pts</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.7rem;white-space:nowrap">🎲<br>2F G. Pen<br><span style="color:#475569">1pt</span></th>
                       </tr>
                     </thead>
                     <tbody>{rows_html}</tbody>
