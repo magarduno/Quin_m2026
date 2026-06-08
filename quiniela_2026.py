@@ -698,7 +698,7 @@ if not st.session_state.user:
         st.markdown("""<div style="background:linear-gradient(145deg,#1e293b,#0f172a);
             padding:15px 28px;border-radius:24px;border:1px solid #D5D9E0;
             box-shadow:0 25px 50px rgba(0,0,0,0.5)">""", unsafe_allow_html=True)
-        opcion=st.radio("",["🔑 Ingresar","📝 Registrarse","🔓 Cambiar Contraseña"],horizontal=True)
+        opcion=st.radio("",["🔑 Ingresar","📝 Registrarse","🔓 C. Password"],horizontal=True)
         if "Ingresar" in opcion:
             u=st.text_input("Usuario"); p=st.text_input("Contraseña",type="password")
             if st.button("ACCEDER →",use_container_width=True,type="primary"):
