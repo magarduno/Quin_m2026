@@ -1075,7 +1075,7 @@ else:
                 st.markdown(f"""
                 <div style="overflow-x:auto;background:#EDF2F7;border-radius:16px;
                     border:1px solid #334155;padding:4px;">
-                  <table style="width:100%;border-collapse:collapse;font-size:.8rem;color:#cbd5e1;">
+                  <table style="width:100%;border-collapse:collapse;font-size:.8rem;color:#4E5B5C;">
                     <thead>
                       <tr style="border-bottom:2px solid #334155;">
                         <th style="padding:10px 8px;text-align:center;color:#64748b;font-size:.80rem;letter-spacing:1px;white-space:nowrap">POS</th>
