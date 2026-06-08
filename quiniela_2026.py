@@ -702,8 +702,8 @@ if not st.session_state.user:
         if "Ingresar" in opcion:
             u=st.text_input("Usuario"); p=st.text_input("Contraseña",type="password")
             if st.button("ACCEDER →",use_container_width=True,type="primary"):
-                if u=="RAUL" and p=="2026mundial":
-                    st.session_state.user="RAUL"; st.rerun()
+                if u=="ADMIN" and p=="MG2026mundial":
+                    st.session_state.user="ADMIN"; st.rerun()
                 else:
                     conn=conectar_db()
                     row=conn.execute("SELECT password,bloqueado FROM usuarios WHERE username=?",(u,)).fetchone()
@@ -718,7 +718,7 @@ if not st.session_state.user:
             nombre_completo=st.text_input("Nombre completo *"); telefono=st.text_input("Teléfono *")
             if st.button("CREAR CUENTA →",use_container_width=True,type="primary"):
                 if not nu.strip(): st.error("⚠️ Usuario obligatorio.")
-                elif nu.strip().lower()=="raul": st.error("⚠️ Nombre reservado.")
+                elif nu.strip().lower()=="ADMIN": st.error("⚠️ Nombre reservado.")
                 elif len(np)<8: st.error("⚠️ Contraseña mínimo 8 caracteres.")
                 elif np!=np2: st.error("⚠️ Las contraseñas no coinciden.")
                 elif not nombre_completo.strip(): st.error("⚠️ Nombre completo obligatorio.")
@@ -738,6 +738,9 @@ if not st.session_state.user:
                     finally: conn.close()
         elif "Cambiar" in opcion:
             st.markdown("#### 🔓 Recuperar contraseña")
+            mensaje = st.empty()
+            mensaje.warning("⚠️ Para realizar el cambio de contraseña se debe solicitar la autorización del administrador. "
+                           "Si ya lo solicitaste, puedes realizar el cambio en esta sección.")
             u_reset = st.text_input("Tu usuario")
             if u_reset:
                 conn_r = conectar_db()
@@ -754,6 +757,7 @@ if not st.session_state.user:
                     np1 = st.text_input("Nueva contraseña (mín. 8)", type="password", key="npass1")
                     np2 = st.text_input("Confirmar nueva contraseña", type="password", key="npass2")
                     if st.button("💾 GUARDAR NUEVA CONTRASEÑA", use_container_width=True, type="primary"):
+                        mensaje.empty()
                         if len(np1) < 8:
                             st.error("⚠️ Mínimo 8 caracteres.")
                         elif np1 != np2:
