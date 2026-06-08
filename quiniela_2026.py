@@ -696,7 +696,7 @@ if not st.session_state.user:
     _,col_log,_=st.columns([1,2,1])
     with col_log:
         st.markdown("""<div style="background:linear-gradient(145deg,#1e293b,#0f172a);
-            padding:32px 28px;border-radius:24px;border:1px solid #334155;
+            padding:15px 28px;border-radius:24px;border:1px solid #D5D9E0;
             box-shadow:0 25px 50px rgba(0,0,0,0.5)">""", unsafe_allow_html=True)
         opcion=st.radio("",["🔑 Ingresar","📝 Registrarse","🔓 Cambiar Contraseña"],horizontal=True)
         if "Ingresar" in opcion:
