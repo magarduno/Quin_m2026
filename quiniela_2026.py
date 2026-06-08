@@ -1058,7 +1058,7 @@ else:
                     pos=i+1
                     medal={1:"🥇",2:"🥈",3:"🥉"}.get(pos,str(pos))
                     es_yo = row["Usuario"] == st.session_state.user
-                    bg = "background:#B5C9DE;" if es_yo else ""
+                    bg = "background:#657A99;" if es_yo else ""
                     yo_badge = " 👤" if es_yo else ""
                     rows_html+=f"""<tr style="{bg}">
                       <td style="text-align:center;font-weight:900;font-size:1rem">{medal}</td>
