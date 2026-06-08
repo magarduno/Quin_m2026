@@ -166,7 +166,7 @@ def inicializar_db():
          bloqueado INTEGER DEFAULT 0, pagado INTEGER DEFAULT 0)''')
     for _col, _tipo in [("bloqueado","INTEGER DEFAULT 0"),("pagado","INTEGER DEFAULT 0"),
                         ("nombre_completo","TEXT DEFAULT ''"),("telefono","TEXT DEFAULT ''"),
-                        ("puede_cambiar_pass","INTEGER DEFAULT 0"),("por_premio","INTEGER DEFAULT 0")]:
+                        ("puede_cambiar_pass","INTEGER DEFAULT 0")]:
         try: c.execute(f"ALTER TABLE usuarios ADD COLUMN {_col} {_tipo}")
         except: pass
     
@@ -679,7 +679,7 @@ def render_auditoria_eliminatorias(conn, usuario_filtro=None):
 if 'user' not in st.session_state: st.session_state.user=None
 
 st.markdown('<h1 class="main-title">🏆 QUINIELA MUNDIAL 2026</h1>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle">Sistema de Quiniela — Grupos + Eliminatorias</p>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle">Sistema de Quinielas — Grupos + Eliminatorias</p>', unsafe_allow_html=True)
 st.markdown("""<div class="reglas-container"><div style="text-align:center">
   <span class="regla-item">🎯 EXACTO: 3 PTS</span>
   <span class="regla-item">🏆 GANADOR: 2 PTS</span>
@@ -729,7 +729,7 @@ if not st.session_state.user:
                         if conn.execute("SELECT 1 FROM usuarios WHERE username=?",(nu.strip(),)).fetchone():
                             st.error(f"⚠️ Usuario '{nu.strip()}' ya existe.")
                         else:
-                            conn.execute("INSERT INTO usuarios(username,password,nombre_completo,telefono,fecha_registro,bloqueado,pagado,puede_cambiar_pass,p_premio) VALUES(?,?,?,?,?,0,0,0,0)",
+                            conn.execute("INSERT INTO usuarios(username,password,nombre_completo,telefono,fecha_registro,bloqueado,pagado,puede_cambiar_pass) VALUES(?,?,?,?,?,0,0,0)",
                                 (nu.strip(),hash_pass(np),nombre_completo.strip(),telefono.strip(),str(datetime.datetime.now())))
                             conn.commit()
                             st.success(f"✅ ¡Registro exitoso! Bienvenido, {nombre_completo.strip().split()[0]}!")
@@ -784,14 +784,14 @@ else:
         if st.button("🚪 Salir",use_container_width=True): st.session_state.user=None; st.rerun()
         st.divider()
         st.info("Los partidos se bloquean una hora antes de comenzar el encuentro.")
-        st.info("EFECTIVO EN DESPACHO 💵,\n 💳 Depósitos Banco Azteca 💳 \n Tarjeta: 4027665885774530 \n MIGUEL ANGEL GARDUÑO LOPEZ")  
+        st.info("Depósitos Banco Azteca 💳 \n Tarjeta: 4027665885774530 \n MIGUEL ANGEL GARDUÑO LOPEZ")    
         conn_usp=conectar_db()                
         df_us=pd.read_sql(
             "SELECT username FROM usuarios WHERE username!='ADMIN'",conn_usp)
         conn_usp.close()
         if df_us.empty: st.info("No hay usuarios registrados.")
         else:
-                 total_p = len(df_us) * 235
+                 total_p = len(df_us) * 90
                  p1 = total_p * 50 / 100
                  p2 = total_p * 30 / 100
                  p3 = total_p * 20 / 100
@@ -1037,7 +1037,7 @@ else:
                 conn_usp.close()
                 if df_usp.empty: st.info("No hay usuarios registrados.")
                 else:
-                 total_p = len(df_usp) * 235
+                 total_p = len(df_usp) * 90
                  p1 = total_p * 50 / 100
                  p2 = total_p * 30 / 100
                  p3 = total_p * 20 / 100
@@ -1306,11 +1306,11 @@ else:
                     uname=row['username']
                     nombre_c=row.get('nombre_completo','') or ''
                     telefono_c=row.get('telefono','') or ''
-                    bloq=int(row['bloqueado']); pagado=int(row.get('pagado',0)); reseteo=int(row.get('puede_cambiar_pass',0)); premio=int(row.get('por_premio',0))
+                    bloq=int(row['bloqueado']); pagado=int(row.get('pagado',0)); reseteo=int(row.get('puede_cambiar_pass',0))
                     fecha=row['fecha_registro'][:10] if row['fecha_registro'] else "—"
                     n_ap=conn.execute("SELECT COUNT(*) FROM apuestas WHERE usuario=?",(uname,)).fetchone()[0]
                     n_el=conn.execute("SELECT COUNT(*) FROM elim_apuestas WHERE usuario=?",(uname,)).fetchone()[0]
-                    ci,cb2,cp,cd,cpw,upp=st.columns([4,2,2,2,2,2])
+                    ci,cb2,cp,cd,cpw=st.columns([4,2,2,2,2])
                     with ci:
                         estado_acc  = "🔴 Bloqueado" if bloq   else "🟢 Activo"
                         estado_pago = "💰 Pagado"    if pagado else "⏳ Sin pagar"
@@ -1359,12 +1359,6 @@ else:
                         if st.button(lbl_pass,key=f"respw_{uname}",use_container_width=True):
                             conn.execute("UPDATE usuarios SET puede_cambiar_pass=? WHERE username=?",
                                          (0 if reseteo else 1,uname))
-                            conn.commit(); st.rerun()
-                    with upp:
-                        lbl_pass = "❌ Q. Premio" if premio else "📺 Premio"
-                        if st.button(lbl_pass,key=f"respw_{uname}",use_container_width=True):
-                            conn.execute("UPDATE usuarios SET por_premio=? WHERE username=?",
-                                         (0 if premio else 1,uname))
                             conn.commit(); st.rerun()
                             
                     st.divider()
