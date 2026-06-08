@@ -737,7 +737,7 @@ if not st.session_state.user:
                     except Exception as e: st.error(f"Error: {e}")
                     finally: conn.close()
         elif "Cambiar" in opcion:
-            st.markdown("#### 🔓 Recuperar contraseña")
+            st.markdown("#### 🔓 C. Password")
             mensaje = st.empty()
             mensaje.warning("⚠️ Para realizar el cambio de contraseña se debe solicitar la autorización del administrador. "
                            "Si ya lo solicitaste, puedes realizar el cambio en esta sección.")
