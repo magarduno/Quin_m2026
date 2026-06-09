@@ -4,6 +4,7 @@ import sqlite3
 import hashlib
 import datetime
 import time
+from datetime import timedelta
 
 # ─────────────────────────────────────────────
 # 1. CONFIGURACIÓN Y ESTILOS
@@ -360,8 +361,8 @@ LLAVE_PERDEDOR = {
 RONDAS = ["32avos", "Octavos", "Cuartos", "Semifinales", "Tercer Lugar", "Final"]
 
 RONDA_LABEL = {
-    "32avos":       "🔵 Round of 32 — P73 al P88",
-    "Octavos":      "🟣 Round of 16 — P89 al P96",
+    "32avos":       "🔵 Ronda de 32 — P73 al P88",
+    "Octavos":      "🟣 Ronda de 16 — P89 al P96",
     "Cuartos":      "🟠 Cuartos de Final — P97 al P100",
     "Semifinales":  "🔴 Semifinales — P101 y P102",
     "Tercer Lugar": "🥉 Tercer Lugar — P103",
@@ -903,21 +904,21 @@ else:
                             ca,cb,cc=st.columns([2,2,2])
                             if ca.button("💾 ACTUALIZAR",key=f"btn_{pid}",use_container_width=True,type="primary"):
                                 conn.execute("DELETE FROM apuestas WHERE usuario=? AND partido_id=?",(st.session_state.user,pid))
-                                conn.execute("INSERT INTO apuestas VALUES(?,?,?,?,?,?,?)",(st.session_state.user,pid,g1,g2,0,0,str(datetime.datetime.now())))
+                                conn.execute("INSERT INTO apuestas VALUES(?,?,?,?,?,?,?)",(st.session_state.user,pid,g1,g2,0,0,str(datetime.datetime.now()-timedelta(hours=6))))
                                 conn.commit(); st.session_state.pop(f"corrigiendo_{pid}",None); st.rerun()
                             if cb.button("🤝 Empate",key=f"btn_emp_{pid}",use_container_width=True):
                                 conn.execute("DELETE FROM apuestas WHERE usuario=? AND partido_id=?",(st.session_state.user,pid))
-                                conn.execute("INSERT INTO apuestas VALUES(?,?,?,?,?,?,?)",(st.session_state.user,pid,g1,g1,1,0,str(datetime.datetime.now())))
+                                conn.execute("INSERT INTO apuestas VALUES(?,?,?,?,?,?,?)",(st.session_state.user,pid,g1,g1,1,0,str(datetime.datetime.now()-timedelta(hours=6))))
                                 conn.commit(); st.session_state.pop(f"corrigiendo_{pid}",None); st.rerun()
                             if cc.button("❌ Cancelar",key=f"btn_cancel_{pid}",use_container_width=True):
                                 st.session_state.pop(f"corrigiendo_{pid}",None); st.rerun()
                         else:
                             ca,cb=st.columns(2)
                             if ca.button("💾 GUARDAR",key=f"btn_{pid}",use_container_width=True,type="primary"):
-                                conn.execute("INSERT INTO apuestas VALUES(?,?,?,?,?,?,?)",(st.session_state.user,pid,g1,g2,0,0,str(datetime.datetime.now())))
+                                conn.execute("INSERT INTO apuestas VALUES(?,?,?,?,?,?,?)",(st.session_state.user,pid,g1,g2,0,0,str(datetime.datetime.now()-timedelta(hours=6))))
                                 conn.commit(); st.rerun()
                             if cb.button("🤝 Apostar Empate",key=f"btn_emp_{pid}",use_container_width=True):
-                                conn.execute("INSERT INTO apuestas VALUES(?,?,?,?,?,?,?)",(st.session_state.user,pid,g1,g1,1,0,str(datetime.datetime.now())))
+                                conn.execute("INSERT INTO apuestas VALUES(?,?,?,?,?,?,?)",(st.session_state.user,pid,g1,g1,1,0,str(datetime.datetime.now()-timedelta(hours=6))))
                                 conn.commit(); st.rerun()
 
                     elif ap and not cerrado and not corrigiendo:
@@ -1016,11 +1017,11 @@ else:
                             pen_sel = st.checkbox("¿Penales?(Empate)", key=f"pen_{mid}")
                             if st.button(f"✅ {eq1}", key=f"ev1_{mid}", use_container_width=True):
                                 conn_el.execute("INSERT INTO elim_apuestas VALUES(?,?,?,?,?,?)",
-                                    (st.session_state.user,mid,eq1,int(pen_sel),0,str(datetime.datetime.now())))
+                                    (st.session_state.user,mid,eq1,int(pen_sel),0,str(datetime.datetime.now()-timedelta(hours=6))))
                                 conn_el.commit(); st.rerun()
                             if st.button(f"✅ {eq2}", key=f"ev2_{mid}", use_container_width=True):
                                 conn_el.execute("INSERT INTO elim_apuestas VALUES(?,?,?,?,?,?)",
-                                    (st.session_state.user,mid,eq2,int(pen_sel),0,str(datetime.datetime.now())))
+                                    (st.session_state.user,mid,eq2,int(pen_sel),0,str(datetime.datetime.now()-timedelta(hours=6))))
                                 conn_el.commit(); st.rerun()
             conn_el.close()
 
