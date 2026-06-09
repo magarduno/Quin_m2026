@@ -535,12 +535,12 @@ def render_auditoria_grupos(conn, usuario_filtro=None):
 
             if es_admin:
                 aps = conn.execute(
-                    "SELECT usuario,g1,g2,es_empate,fecha FROM apuestas WHERE partido_id=? ORDER BY usuario",
+                    "SELECT usuario,g1,g2,es_empate,fecha FROM apuestas WHERE partido_id=? ORDER BY fecha DESC",
                     (pid,)).fetchall()
             else:
                 if cerrado:
                     aps = conn.execute(
-                        "SELECT usuario,g1,g2,es_empate,fecha FROM apuestas WHERE partido_id=? ORDER BY usuario",
+                        "SELECT usuario,g1,g2,es_empate,fecha FROM apuestas WHERE partido_id=? ORDER BY fecha DESC",
                         (pid,)).fetchall()
                 else:
                     aps = conn.execute(
@@ -621,12 +621,12 @@ def render_auditoria_eliminatorias(conn, usuario_filtro=None):
 
             if es_admin:
                 aps = conn.execute(
-                    "SELECT usuario,ganador,penales,fecha FROM elim_apuestas WHERE partido_id=? ORDER BY usuario",
+                    "SELECT usuario,ganador,penales,fecha FROM elim_apuestas WHERE partido_id=? ORDER BY fecha DESC",
                     (pid_e,)).fetchall()
             else:
                 if cerrado:
                     aps = conn.execute(
-                        "SELECT usuario,ganador,penales,fecha FROM elim_apuestas WHERE partido_id=? ORDER BY usuario",
+                        "SELECT usuario,ganador,penales,fecha FROM elim_apuestas WHERE partido_id=? ORDER BY fecha DESC",
                         (pid_e,)).fetchall()
                 else:
                     aps = conn.execute(
