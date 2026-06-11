@@ -796,7 +796,7 @@ else:
         conn_usp.close()
         if df_us.empty: st.info("No hay usuarios registrados.")
         else:
-                 total_p = len(df_us) * 90
+                 total_p = len(df_us) * 100
                  p1 = total_p * 50 / 100
                  p2 = total_p * 30 / 100
                  p3 = total_p * 20 / 100
@@ -1042,7 +1042,7 @@ else:
                 conn_usp.close()
                 if df_usp.empty: st.info("No hay usuarios registrados.")
                 else:
-                 total_p = len(df_usp) * 90
+                 total_p = len(df_usp) * 100
                  p1 = total_p * 50 / 100
                  p2 = total_p * 30 / 100
                  p3 = total_p * 20 / 100
