@@ -1277,8 +1277,15 @@ else:
             if not df_rank.empty:
                 # Tabla HTML completa
                 rows_html=""
+                ptsA = 0
                 for i,(_,row) in enumerate(df_rank.iterrows()):
-                    pos=i+1
+                    pts = row["Pts"]
+                    if pts == ptsA:
+                        pos=i+0
+                        ptsA = pts                   
+                    else:    
+                        pos=i+1
+                        ptsA = pts   
                     medal={1:"🥇",2:"🥈",3:"🥉"}.get(pos,str(pos))
                     es_yo = row["Usuario"] == st.session_state.user
                     bg = "background:#B5C9DE;" if es_yo else ""
@@ -1316,6 +1323,7 @@ else:
                   </table>
                 </div>
                 """, unsafe_allow_html=True)
+                    
             else:
                 st.info("Aún no hay puntos registrados.")
         # ── USUARIOS ──────────────────────────
