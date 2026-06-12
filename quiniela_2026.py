@@ -1059,8 +1059,14 @@ else:
             if not df_rank.empty:
                 # Tabla HTML completa
                 rows_html=""
+                ranking = {}
+                pos = 0
+                ptsA = None
                 for i,(_,row) in enumerate(df_rank.iterrows()):
-                    pos=i+1
+                    pts = row["Pts"]
+                    if ptsA is None or pts != ptsA: 
+                        pos += 1
+                        ptsA = pts
                     medal={1:"🥇",2:"🥈",3:"🥉"}.get(pos,str(pos))
                     es_yo = row["Usuario"] == st.session_state.user
                     bg = "background:#B5C9DE;" if es_yo else ""
