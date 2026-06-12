@@ -1281,10 +1281,10 @@ else:
                 for i,(_,row) in enumerate(df_rank.iterrows()):
                     pts = row["Pts"]
                     if pts == ptsA:
-                        pos=i+0                  
+                        pos=i                  
                     else:    
-                        pos=i+1
-                        ptsA = pts   
+                        ptsA = pts
+                        pos=i+1    
                     medal={1:"🥇",2:"🥈",3:"🥉"}.get(pos,str(pos))
                     es_yo = row["Usuario"] == st.session_state.user
                     bg = "background:#B5C9DE;" if es_yo else ""
