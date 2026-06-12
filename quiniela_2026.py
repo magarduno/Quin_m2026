@@ -1282,7 +1282,7 @@ else:
                     pts = row["Pts"]
                     if pts == ptsA:
                         pos=i+0
-                        ptsA = pts                   
+                                          
                     else:    
                         pos=i+1
                         ptsA = pts   
@@ -1322,8 +1322,7 @@ else:
                     <tbody>{rows_html}</tbody>
                   </table>
                 </div>
-                """, unsafe_allow_html=True)
-                    
+                """, unsafe_allow_html=True)                  
             else:
                 st.info("Aún no hay puntos registrados.")
         # ── USUARIOS ──────────────────────────
