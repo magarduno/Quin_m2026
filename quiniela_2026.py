@@ -1277,12 +1277,11 @@ else:
             if not df_rank.empty:
                 # Tabla HTML completa
                 rows_html=""
-                ptsA = 0
+                ptsA = -1
                 for i,(_,row) in enumerate(df_rank.iterrows()):
                     pts = row["Pts"]
                     if pts == ptsA:
-                        pos=i+0
-                                          
+                        pos=i+0                  
                     else:    
                         pos=i+1
                         ptsA = pts   
