@@ -124,9 +124,9 @@ st.markdown("""
         background: rgba(34,197,94,0.08);
         border:1px solid rgba(34,197,94,0.3);
         border-radius:8px; padding:8px; margin-top:10px;
-        font-weight:700; color:#4ade80; font-size:1rem;
+        font-weight:700; color:#22AB56; font-size:1.4rem;
     }
-    .result-oficial small { display:block; font-size:.62rem; color:#4ade80; opacity:.7; font-weight:600; margin-bottom:2px; }
+    .result-oficial small { display:block; font-size:.82rem; color:#22AB56; opacity:.7; font-weight:600; margin-bottom:2px; }
 
     /* Badges */
     .badge-empate {
@@ -1072,7 +1072,7 @@ else:
                     bg = "background:#B5C9DE;" if es_yo else ""
                     yo_badge = " 👤" if es_yo else ""
                     rows_html+=f"""<tr style="{bg}">
-                      <td style="text-align:center;font-weight:900;font-size:1.3rem">{medal}</td>
+                      <td style="text-align:center;font-weight:900;font-size:1.2rem">{medal}</td>
                       <td style="text-align:left;font-weight:800; font-size:1.0rem;color:#2E4D6B;white-space:nowrap">{row["Usuario"]}{yo_badge}</td>
                       <td style="text-align:center;font-weight:900;color:#3b82f6;font-size:1.1rem">{row["Pts"]}</td>
                       <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Exacto",0)}</td>
@@ -1296,7 +1296,7 @@ else:
                     bg = "background:#B5C9DE;" if es_yo else ""
                     yo_badge = " 👤" if es_yo else ""
                     rows_html+=f"""<tr style="{bg}">
-                      <td style="text-align:center;font-weight:900;font-size:1.3rem">{medal}</td>
+                      <td style="text-align:center;font-weight:900;font-size:1.2rem">{medal}</td>
                       <td style="text-align:left;font-weight:800;color:#2E4D6B;white-space:nowrap">{row["Usuario"]}{yo_badge}</td>
                       <td style="text-align:center;font-weight:900;color:#3b82f6;font-size:1.1rem">{row["Pts"]}</td>
                       <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Exacto",0)}</td>
