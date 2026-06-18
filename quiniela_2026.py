@@ -126,7 +126,7 @@ st.markdown("""
         border-radius:8px; padding:8px; margin-top:10px;
         font-weight:700; color:#22AB56; font-size:1.4rem;
     }
-    .result-oficial small { display:block; font-size:.82rem; color:#22AB56; opacity:.7; font-weight:600; margin-bottom:2px; }
+    .result-oficial small { display:block; font-size:.82rem; color:#22AB56; opacity:.5; font-weight:600; margin-bottom:2px; }
 
     /* Badges */
     .badge-empate {
@@ -788,24 +788,8 @@ else:
         if st.button("🔄 Refrescar",use_container_width=True): st.rerun()
         if st.button("🚪 Salir",use_container_width=True): st.session_state.user=None; st.rerun()
         st.divider()
-        st.info("Los partidos se bloquean una hora antes de comenzar el encuentro.")
-        st.info("Depósitos Banco Azteca 💳 \n Tarjeta: 4027665885774530 \n MIGUEL ANGEL GARDUÑO LOPEZ")    
-        conn_usp=conectar_db()                
-        df_us=pd.read_sql(
-            "SELECT username FROM usuarios WHERE username!='ADMIN'",conn_usp)
-        conn_usp.close()
-        if df_us.empty: st.info("No hay usuarios registrados.")
-        else:
-                 total_p = len(df_us) * 100
-                 p1 = total_p * 50 / 100
-                 p2 = total_p * 30 / 100
-                 p3 = total_p * 20 / 100
-                 st.markdown(f"""<div class="reglas-container"><div style="text-align:center">
-                    <span class="regla-item"> PREMIOS POSIBLES AL MOMENTO: </span>
-                    <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥇 1°: ${format(p1, ",.2f")} </span>
-                    <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥈 2°: ${format(p2, ",.2f")} </span>
-                    <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥉 3°: ${format(p3, ",.2f")} </span>
-                    </div></div>""", unsafe_allow_html=True)
+        st.info("Los partidos se bloquean antes de comenzar el encuentro.")
+        st.info("GRACIAS POR LA CONFIAZA, ¡¡MUCHA SUERTE!!")    
         
         
     # ══════════════════════════════════════════
@@ -1054,6 +1038,7 @@ else:
                     <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥈 2°: ${format(p2, ",.2f")} </span>
                     <span class="regla-item" style="color:#2E8B57;font-size:16px"> 🥉 3°: ${format(p3, ",.2f")} </span>
                     </div></div>""", unsafe_allow_html=True)
+                 st.subheader("¡¡SUERTE A TODOS!! ")
                  st.caption(f"Total: **{len(df_usp)}** participantes")
             df_rank=calcular_ranking_global()
             if not df_rank.empty:
@@ -1073,7 +1058,7 @@ else:
                     yo_badge = " 👤" if es_yo else ""
                     rows_html+=f"""<tr style="{bg}">
                       <td style="text-align:center;font-weight:900;font-size:1.2rem">{medal}</td>
-                      <td style="text-align:left;font-weight:800; font-size:1.0rem;color:#2E4D6B;white-space:nowrap">{row["Usuario"]}{yo_badge}</td>
+                      <td style="text-align:left;font-weight:800; font-size:1.1rem;color:#2E4D6B;white-space:nowrap">{row["Usuario"]}{yo_badge}</td>
                       <td style="text-align:center;font-weight:900;color:#3b82f6;font-size:1.1rem">{row["Pts"]}</td>
                       <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Exacto",0)}</td>
                       <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Ganador",0)}</td>
@@ -1091,7 +1076,7 @@ else:
                       <tr style="border-bottom:2px solid #334155;">
                         <th style="padding:10px 8px;text-align:center;color:#64748b;font-size:.80rem;letter-spacing:1px;white-space:nowrap">POS</th>
                         <th style="padding:10px 8px;text-align:left;color:#64748b;font-size:.80rem;letter-spacing:1px">JUGADOR</th>
-                        <th style="padding:10px 8px;text-align:center;color:#3b82f6;font-size:.80rem;letter-spacing:1px">PTS</th>
+                        <th style="padding:10px 8px;text-align:center;color:#3b82f6;font-size:.90rem;letter-spacing:1px">PTS</th>
                         <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.7rem;white-space:nowrap">🎯<br>Exacto<br><span style="color:#475569">3pts</span></th>
                         <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.7rem;white-space:nowrap">🏆<br>Ganador<br><span style="color:#475569">2pts</span></th>
                         <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.7rem;white-space:nowrap">🤝<br>Empate<br><span style="color:#475569">1pt</span></th>
@@ -1310,18 +1295,18 @@ else:
                 st.markdown(f"""
                 <div style="overflow-x:auto;background:#EDF2F7;border-radius:16px;
                     border:1px solid #334155;padding:4px;">
-                  <table style="width:100%;border-collapse:collapse;font-size:.8rem;color:#cbd5e1;">
+                  <table style="width:100%;border-collapse:collapse;font-size:1.0rem;color:#4E5B5C;">
                     <thead>
                       <tr style="border-bottom:2px solid #334155;">
-                        <th style="padding:10px 8px;text-align:center;color:#64748b;font-size:.80rem;letter-spacing:1px;white-space:nowrap">POS</th>
-                        <th style="padding:10px 8px;text-align:left;color:#64748b;font-size:.80rem;letter-spacing:1px">JUGADOR</th>
-                        <th style="padding:10px 8px;text-align:center;color:#3b82f6;font-size:.80rem;letter-spacing:1px">PTS</th>
-                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.6rem;white-space:nowrap">🎯<br>Exacto<br><span style="color:#475569">3pts</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.6rem;white-space:nowrap">🏆<br>Ganador<br><span style="color:#475569">2pts</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.6rem;white-space:nowrap">🤝<br>Empate<br><span style="color:#475569">1pt</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.6rem;white-space:nowrap">⚽<br>2F G+Pen<br><span style="color:#475569">3pts</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.6rem;white-space:nowrap">⚽<br>2F Ganador<br><span style="color:#475569">2pts</span></th>
-                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.6rem;white-space:nowrap">🎲<br>2F G. Pen<br><span style="color:#475569">1pt</span></th>
+                        <th style="padding:10px 8px;text-align:center;color:#64748b;font-size:1.0rem;letter-spacing:1px;white-space:nowrap">POS</th>
+                        <th style="padding:10px 8px;text-align:left;color:#64748b;font-size:1.0rem;letter-spacing:1px">JUGADOR</th>
+                        <th style="padding:10px 8px;text-align:center;color:#3b82f6;font-size:1.0rem;letter-spacing:1px">PTS</th>
+                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.7rem;white-space:nowrap">🎯<br>Exacto<br><span style="color:#475569">3pts</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.7rem;white-space:nowrap">🏆<br>Ganador<br><span style="color:#475569">2pts</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#3b82f6;font-size:.7rem;white-space:nowrap">🤝<br>Empate<br><span style="color:#475569">1pt</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.7rem;white-space:nowrap">⚽<br>2F G+Pen<br><span style="color:#475569">3pts</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.7rem;white-space:nowrap">⚽<br>2F Ganador<br><span style="color:#475569">2pts</span></th>
+                        <th style="padding:10px 6px;text-align:center;color:#7c3aed;font-size:.7rem;white-space:nowrap">🎲<br>2F G. Pen<br><span style="color:#475569">1pt</span></th>
                       </tr>
                     </thead>
                     <tbody>{rows_html}</tbody>
