@@ -1141,7 +1141,7 @@ else:
                 ep=conn.execute("SELECT estado FROM estados_partidos WHERE partido_id=?",(pid,)).fetchone()
                 ya_c=ep and ep[0]=='cerrado'
                 st.write(f"**{teams[i1]} vs {teams[i2]}** — {'🔒 Cerrado' if ya_c else '🔓 Abierto'}")
-                ca1,ca2,ca3=st.columns([3,3,2])
+                ca1,ca2,ca3,ca4=st.columns([3,3,2,2])
                 r1v=ca1.number_input(f"Goles {teams[i1]}",0,15,value=res_ex[0] if res_ex else 0,key=f"adm1_{pid}")
                 r2v=ca2.number_input(f"Goles {teams[i2]}",0,15,value=res_ex[1] if res_ex else 0,key=f"adm2_{pid}")
                 if ca3.button("Grabar",key=f"adm_sv_{pid}"):
@@ -1150,6 +1150,12 @@ else:
                     conn.commit()
                     tipo="🤝 Empate" if r1v==r2v else "⚽ Resultado"
                     st.success(f"✅ {tipo}: {teams[i1]} {r1v}-{r2v} {teams[i2]} — 🔒 Cerrado")
+                if ca4.button("Borrar",key=f"adm_del_{pid}"):
+                    conn.execute("DELETE FROM resultados_reales WHERE partido_id=?",(pid,)).fetchone()
+                    conn.execute("INSERT OR REPLACE INTO estados_partidos VALUES(?,'abierto')",(pid,))
+                    conn.commit()
+                    st.rerun()
+                    st.success(f"✅ Resultado borrado {teams[i1]} - {teams[i2]} — 🔓 Abierto")
                 st.divider()
 
         # ── ELIMINATORIAS (ADMIN) ─────────────
