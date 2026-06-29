@@ -1023,12 +1023,12 @@ else:
                       <td style="text-align:center;font-weight:900;font-size:1.2rem">{medal}</td>
                       <td style="text-align:left;font-weight:800; font-size:1.1rem;color:#2E4D6B;white-space:nowrap">{row["Usuario"]}{yo_badge}</td>
                       <td style="text-align:center;font-weight:900;color:#3b82f6;font-size:1.1rem">{row["Pts"]}</td>
-                      <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Exacto",0)}</td>
-                      <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Ganador",0)}</td>
-                      <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Empate",0)}</td>
                       <td style="text-align:center;color:#7c3aed;font-size:1.0rem">{row.get("Elim G+Pen",0)}</td>
                       <td style="text-align:center;color:#7c3aed;font-size:1.0rem">{row.get("Elim Ganador",0)}</td>
                       <td style="text-align:center;color:#7c3aed;font-size:1.0rem">{row.get("Elim Pen/No",0)}</td>
+                      <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Exacto",0)}</td>
+                      <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Ganador",0)}</td>
+                      <td style="text-align:center;color:#3b82f6;font-size:1.0rem">{row.get("Empate",0)}</td>
                     </tr>"""
 
                 st.markdown(f"""
