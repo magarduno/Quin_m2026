@@ -653,7 +653,6 @@ def render_auditoria_eliminatorias(conn, usuario_filtro=None):
                 uname, ganador_ap, penales_ap, fecha, goles_ap = ap
                 es_yo = (uname == usuario_filtro)
                 pen_ap = "Sí" if penales_ap==1 else "No"
-                
                 if goles_ap==1: 
                     gol_ap = "Si"
                 else:
@@ -662,9 +661,16 @@ def render_auditoria_eliminatorias(conn, usuario_filtro=None):
                     else:
                         gol_ap = ""
                 fecha = fecha [:16]
-
                 if res_e:
                     ganador_real, penales_real, goles_real = res_e
+                    pen_r = "Si" if penales_real==1 else "No" 
+                    if goles_real==1: 
+                        gol_r = "Si"
+                    else:
+                        if goles_real==0: 
+                          gol_r = "No"
+                        else:
+                          gol_r = ""
                     pts = calcular_puntos_elim(ganador_ap, penales_ap, ganador_real, int(penales_real),int(goles_ap), int(goles_real))
                     resultado = f"{ganador_real}{' (penales)' if penales_real==1 else ''}"
                     pts_txt = {4:"⚽ 4 pts", 3:"🎯 3 pts",2:"🏆 2 pts",1:"🎲 1 pt",0:"❌ 0 pts"}[pts]
@@ -681,6 +687,8 @@ def render_auditoria_eliminatorias(conn, usuario_filtro=None):
                 fila["¿Penales?"] = pen_ap
                 fila["¿+2.5Goles?"] = gol_ap
                 fila["Resultado oficial"] = resultado
+                fila["Penales"] = pen_r
+                fila["+2.5Goles"] = gol_r
                 fila["Puntos"] = pts_txt
                 fila["Fecha de apuesta"] = fecha
                 filas.append(fila)
@@ -998,11 +1006,11 @@ else:
                             pen_sel = st.checkbox("EMPATE (Hay Penales)", key=f"pen_{mid}")
                             if st.button(f"✅ {eq1}", key=f"ev1_{mid}", use_container_width=True):
                                 conn_el.execute("INSERT INTO elim_apuestas VALUES(?,?,?,?,?,?,?)",
-                                    (st.session_state.user,mid,eq1,int(pen_sel),0,str(datetime.datetime.now()-timedelta(hours=26)),goles25))
+                                    (st.session_state.user,mid,eq1,int(pen_sel),0,str(datetime.datetime.now()-timedelta(hours=6)),goles25))
                                 conn_el.commit(); st.rerun()
                             if st.button(f"✅ {eq2}", key=f"ev2_{mid}", use_container_width=True):
                                 conn_el.execute("INSERT INTO elim_apuestas VALUES(?,?,?,?,?,?,?)",
-                                    (st.session_state.user,mid,eq2,int(pen_sel),0,str(datetime.datetime.now()-timedelta(hours=26)),goles25))
+                                    (st.session_state.user,mid,eq2,int(pen_sel),0,str(datetime.datetime.now()-timedelta(hours=6)),goles25))
                                 conn_el.commit(); st.rerun()
                        
                         elif abierto and ambos:
