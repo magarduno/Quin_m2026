@@ -401,8 +401,7 @@ def calcular_puntos_elim(ganador_ap, penales_ap, ganador_real,penales_real,goles
     else: 
        acerto_goles= 0
         
-
-    # Marcaste penales pero NO hubo penales -> 0 pt
+     # Marcaste penales pero NO hubo penales -> 0 pt
     if penales_ap == 1 and penales_real == 0:
         return 0 + acerto_goles 
  
@@ -654,7 +653,8 @@ def render_auditoria_eliminatorias(conn, usuario_filtro=None):
                 uname, ganador_ap, penales_ap, fecha, goles_ap = ap
                 es_yo = (uname == usuario_filtro)
                 pen_ap = "Sí" if penales_ap==1 else "No"
-                gol_ap = "Sí" if goles_ap==1 else "No"
+                gol_ap = "Sí" if goles_ap==1 else ""
+                gol_ap = "No" if goles_ap==0 else ""
                 fecha = fecha [:16]
 
                 if res_e:
@@ -879,7 +879,7 @@ else:
         if st.button("🚪 Salir",use_container_width=True): st.session_state.user=None; st.rerun()
         st.divider()
         st.info("Los partidos se bloquean antes de comenzar el encuentro.")
-        st.info("GRACIAS POR LA CONFIAZA, ¡¡MUCHA SUERTE!!")    
+        st.info("¡¡MUCHA SUERTE!!")    
         
         
     # ══════════════════════════════════════════
