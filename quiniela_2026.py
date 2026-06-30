@@ -653,8 +653,14 @@ def render_auditoria_eliminatorias(conn, usuario_filtro=None):
                 uname, ganador_ap, penales_ap, fecha, goles_ap = ap
                 es_yo = (uname == usuario_filtro)
                 pen_ap = "Sí" if penales_ap==1 else "No"
-                gol_ap = "Sí" if goles_ap==1 else ""
-                gol_ap = "No" if goles_ap==0 else ""
+                
+                if goles_ap==1: 
+                    gol_ap = "Si"
+                else:
+                    if goles_ap==0: 
+                        gol_ap = "No"
+                    else:
+                        gol_ap = ""
                 fecha = fecha [:16]
 
                 if res_e:
